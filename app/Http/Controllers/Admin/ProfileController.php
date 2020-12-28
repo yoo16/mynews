@@ -40,7 +40,8 @@ class ProfileController extends Controller
         $profile->fill($form);
         $profile->save();
         
-        return redirect('admin/profile/create');
+        //return redirect('admin/profile/create');
+        return redirect('admin/profile/');
     }
     
     public function edit(Request $request)
@@ -68,4 +69,12 @@ class ProfileController extends Controller
 
         return redirect('admin/profile/');
     }
+
+    public function delete(Request $request)
+    {
+        $profile = Profile::find($request->id);
+        $profile->delete();
+        return redirect('admin/profile/');
+    }
+
 }

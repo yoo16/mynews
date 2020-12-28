@@ -11,32 +11,34 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'NewsController@index');
+Route::get('/profile', 'ProfileController@index');
+
+Route::group(
+    [
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'middleware' => 'auth',
+], function() {
+    Route::get('news', 'NewsController@index')->name('admin.news');
+    Route::get('news/create', 'NewsController@add')->name('admin.news.create');
+    Route::post('news/create', 'NewsController@create')->name('admin.news.create');
+    Route::get('news/edit', 'NewsController@edit')->name('admin.news.edit');
+    Route::post('news/edit', 'NewsController@update')->name('admin.news.update');
+    Route::get('news/delete', 'NewsController@delete')->name('admin.news.delete');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-    Route::get('news', 'Admin\NewsController@index');
-
-    Route::get('news/create', 'Admin\NewsController@add');
-    Route::post('news/create', 'Admin\NewsController@create');
-
-    Route::get('news/edit', 'Admin\NewsController@edit');
-    Route::post('news/edit', 'Admin\NewsController@update');
-
-    Route::get('news/delete', 'Admin\NewsController@delete');
-});
-
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-    Route::get('profile', 'Admin\ProfileController@index');
-
-    Route::get('profile/create', 'Admin\ProfileController@add');
-    Route::post('profile/create', 'Admin\ProfileController@create');
-
-    Route::get('profile/edit', 'Admin\ProfileController@edit');
-    Route::post('profile/edit', 'Admin\ProfileController@update');
-
-    Route::get('profile/delete', 'Admin\ProfileController@delete');
+Route::group([
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'middleware' => 'auth',
+], function() {
+    Route::get('profile', 'ProfileController@index')->name('admin.profile');
+    Route::get('profile/create', 'ProfileController@add')->name('admin.profile.add');
+    Route::post('profile/create', 'ProfileController@create')->name('admin.profile.create');
+    Route::get('profile/edit', 'ProfileController@edit')->name('admin.profile.edit');
+    Route::post('profile/edit', 'ProfileController@update')->name('admin.profile.update');
+    Route::get('profile/delete', 'ProfileController@delete')->name('admin.profile.delete');
 });
 
 // Route::group(['prefix' => 'admin/news', 'middleware' => 'auth', 'namespace' => 'Admin'], function() {
