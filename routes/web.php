@@ -41,22 +41,6 @@ Route::group([
     Route::get('profile/delete', 'ProfileController@delete')->name('admin.profile.delete');
 });
 
-// Route::group(['prefix' => 'admin/news', 'middleware' => 'auth', 'namespace' => 'Admin'], function() {
-//     Route::get('create', 'NewsController@add');
-//     Route::post('create', 'NewsController@create');
-
-//     Route::get('edit', 'NewsController@edit');
-//     Route::post('edit', 'NewsController@update');
-// });
-
-// Route::group(['prefix' => 'admin/profile', 'middleware' => 'auth', 'namespace' => 'Admin'], function() {
-//     Route::get('create', 'ProfileController@add');
-//     Route::post('create', 'ProfileController@create');
-
-//     Route::get('edit', 'ProfileController@edit');
-//     Route::post('edit', 'ProfileController@update');
-// });
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
