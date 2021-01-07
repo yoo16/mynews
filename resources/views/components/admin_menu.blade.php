@@ -9,13 +9,17 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      @guest
+      @else
       <ul class="navbar-nav mr-auto">
         <li><a class="nav-link" href="{{ url('admin/news/') }}">News</a></li>
         <li><a class="nav-link" href="{{ url('admin/profile/') }}">Profile</a></li>
       </ul>
+      @endguest
 
       <ul class="navbar-nav ml-auto">
         @guest
+        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Regist') }}</a></li>
         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
         @else
         <li class="nav-item dropdown">

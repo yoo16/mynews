@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="row">
-  <div class="col-md-10 mx-auto">
+  <div class="col-md-10">
     <h2>ニュース編集</h2>
     <form action="{{ action('Admin\NewsController@update') }}" method="post" enctype="multipart/form-data">
       @if (count($errors) > 0)

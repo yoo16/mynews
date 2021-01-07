@@ -28,30 +28,31 @@
 
 <div class="row">
   <div class="mx-auto">
-    <div class="row">
-      <table class="table">
-        <thead>
-          <tr>
-            <th width="5%"></th>
-            <th width="20%">タイトル</th>
-            <th width="50%">本文</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach($posts as $news)
-          <tr>
-            <td>
-              <div>
-                <a href="{{ action('Admin\NewsController@edit', ['id' => $news->id]) }}" class="btn btn-sm btn-outline-primary">編集</a>
-              </div>
-            </td>
-            <td>{{ \Str::limit($news->title, 100) }}</td>
-            <td>{{ \Str::limit($news->body, 250) }}</td>
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
-    </div>
+    @if (count($posts) > 0)
+    <table class="table">
+      <thead>
+        <tr>
+          <th width="5%"></th>
+          <th width="20%">タイトル</th>
+          <th width="50%">本文</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach($posts as $news)
+        <tr>
+          <td>
+            <div>
+              <a href="{{ action('Admin\NewsController@edit', ['id' => $news->id]) }}"
+                class="btn btn-sm btn-outline-primary">編集</a>
+            </div>
+          </td>
+          <td>{{ \Str::limit($news->title, 100) }}</td>
+          <td>{{ \Str::limit($news->body, 250) }}</td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+    @endif
   </div>
 </div>
 @endsection
